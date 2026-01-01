@@ -1,0 +1,16 @@
+generator client {
+  provider = "prisma-client-js"
+  // Remove the custom output line
+}
+
+datasource db {
+  provider = "postgresql"
+  // No url here
+}
+
+model Todo {
+  id         Int      @id @default(autoincrement())
+  todo       String
+  completed  Boolean  @default(false)
+  created_at DateTime @default(now())
+}
