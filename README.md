@@ -6,3 +6,5 @@ graphql and prisma
 pending 
 for docker container 
 login auth service.
+link:-https://github.com/piyushgarg-dev/threads-app-graphql/tree/main/src
+https://www.youtube.com/watch?v=WtkKwO1viI8&list=PLJqm1QY3wEqLr8F_8JqRjkKYiViE2wmFq
