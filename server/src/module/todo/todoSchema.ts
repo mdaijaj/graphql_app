@@ -1,6 +1,6 @@
 const todoSchema = `#graphql
 
-scalar Date
+scalar Date  # Custom scalar for Date type
 
 type ResponseType {
     message:String
@@ -21,10 +21,8 @@ type Query {
 type Mutation {
     createTodo(todo:String):Todo
     updateTodo(id:Int ,todo:String):ResponseType
-    toggleComplete(id:Int , data:Boolean):ResponseType
+    toggleComplete(id: Int!, data: Boolean!): ResponseType
 }
-
-
 `;
 
 export default todoSchema;

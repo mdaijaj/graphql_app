@@ -1,10 +1,8 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import todoSchema from "./module/todo/todoSchema.js";
-import todoResolver from "./module/todo/todoResolver.js";
+import apolloServer from "./config/apolloServer.js";
 
 const app = express();
 const PORT = 8000;
@@ -15,12 +13,6 @@ app.use(cors());
 
 app.get("/", (req, res) => {
     return res.send("Welcome to the Todo GraphQL API");
-});
-
-// Apollo Server with standalone server
-const apolloServer = new ApolloServer({
-    typeDefs: todoSchema,
-    resolvers: todoResolver,
 });
 
 const startServer = async () => {
@@ -34,7 +26,6 @@ const startServer = async () => {
         const { url } = await startStandaloneServer(apolloServer, {
             listen: { port: 4000 },
         });
-
         console.log(`🚀 GraphQL Server: ${url}`);
     } catch (error) {
         console.error("❌ Server error:", error);

@@ -1,11 +1,10 @@
-generator client {
-  provider = "prisma-client-js"
-  // Remove the custom output line
-}
-
 datasource db {
   provider = "postgresql"
-  // No url here
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
 }
 
 model Todo {

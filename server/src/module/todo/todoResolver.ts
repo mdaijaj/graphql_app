@@ -1,5 +1,4 @@
 import prisma from "../../config/database.js";
-import { GraphQLResolveInfo } from "graphql";
 
 interface GetTodoArgs {
     id: number;
@@ -33,39 +32,28 @@ const todoResolver = {
     },
 
     Mutation: {
-        createTodo: async (
-            _: unknown,
-            { todo }: CreateTodoArgs
-        ) => {
-            return prisma.todo.create({
+        createTodo: async (_: unknown, { todo }: CreateTodoArgs) => {
+            console.log("todo", todo);
+            const result = await prisma.todo.create({
                 data: {
-                    todo,
-                    completed: false,
+                    todo, completed: false,
                 },
             });
+            console.log("result", result);
+            return result;
         },
 
-        updateTodo: async (
-            _: unknown,
-            { id, todo }: UpdateTodoArgs
-        ) => {
+        updateTodo: async (_: unknown, { id, todo }: UpdateTodoArgs) => {
             await prisma.todo.update({
-                where: { id },
-                data: { todo },
+                where: { id }, data: { todo },
             });
-
             return { message: "Todo updated successfully!" };
         },
 
-        toggleComplete: async (
-            _: unknown,
-            { id, data }: ToggleTodoArgs
-        ) => {
+        toggleComplete: async (_: unknown, { id, data }: ToggleTodoArgs) => {
             await prisma.todo.update({
-                where: { id },
-                data: { completed: data },
+                where: { id }, data: { completed: data },
             });
-
             return { message: "Todo updated successfully!" };
         },
     },
